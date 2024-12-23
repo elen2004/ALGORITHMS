@@ -1,0 +1,122 @@
+Homework Tasks:
+Implement a recursive version of Insertion Sort or Selection Sort.
+Implement a Custom Queue using either an array, a list, or any other structure.
+
+Here's the implementation of a recursive version of the Selection Sort algorithm in C#
+using System;
+
+class SortingAlgorithms
+{
+    static void SelectionSortRecursive(int[] arr, int n, int index = 0)
+    {
+        // Base case
+        if (index == n)
+            return;
+
+        // Find the minimum element in the unsorted array
+        int minIndex = index;
+        for (int j = index + 1; j < n; j++)
+        {
+            if (arr[j] < arr[minIndex])
+            {
+                minIndex = j;
+            }
+        }
+
+        // Swap the found minimum element with the first element
+        int temp = arr[minIndex];
+        arr[minIndex] = arr[index];
+        arr[index] = temp;
+
+        // Recursively calling selection sort for the rest of the array
+        SelectionSortRecursive(arr, n, index + 1);
+    }
+
+    static void Main()
+    {
+        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        SelectionSortRecursive(arr, arr.Length);
+        Console.WriteLine("Sorted array: ");
+        foreach (int i in arr)
+        {
+            Console.Write(i + " ");
+        }
+    }
+}
+
+ Queue implementation using an array in C#
+using System;
+
+class CustomQueue
+{
+    private int[] elements;
+    private int front;
+    private int rear;
+    private int max;
+
+    public CustomQueue(int size)
+    {
+        elements = new int[size];
+        front = 0;
+        rear = -1;
+        max = size;
+    }
+
+    public void Enqueue(int item)
+    {
+        if (rear == max - 1)
+        {
+            Console.WriteLine("Queue Overflow");
+            return;
+        }
+        else
+        {
+            elements[++rear] = item;
+        }
+    }
+
+    public int Dequeue()
+    {
+        if (front > rear)
+        {
+            Console.WriteLine("Queue Underflow");
+            return -1;
+        }
+        else
+        {
+            int item = elements[front++];
+            return item;
+        }
+    }
+
+    public void PrintQueue()
+    {
+        for (int i = front; i <= rear; i++)
+        {
+            Console.Write(elements[i] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        CustomQueue queue = new CustomQueue(5);
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+        queue.Enqueue(4);
+        queue.Enqueue(5);
+
+        Console.WriteLine("Queue before dequeue:");
+        queue.PrintQueue();
+
+        queue.Dequeue();
+        queue.Dequeue();
+
+        Console.WriteLine("Queue after two dequeues:");
+        queue.PrintQueue();
+    }
+}
