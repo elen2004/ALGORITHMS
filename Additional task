@@ -1,0 +1,74 @@
+Additional tasks
+
+Print all elements of the list.
+From a three-digit number (e.g., 124), print the largest digit.
+From a three-digit number (e.g., 124), print the smallest digit.
+From an array, find all even values and print their sum.
+Calculate and print the average of all elements in the array.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list of integers and add 5 elements to it
+        List<int> intList = new List<int>() { 1, 2, 3, 4, 5 };
+        
+        // Create a dictionary with string keys and integer values, and add 5 key-value pairs to it
+        Dictionary<string, int> intDictionary = new Dictionary<string, int>()
+        {
+            {"one", 1}, {"two", 2}, {"three", 3}, {"four", 4}, {"five", 5}
+        };
+        
+        // Create a queue of integers and add 5 elements to it
+        Queue<int> intQueue = new Queue<int>();
+        intQueue.Enqueue(1);
+        intQueue.Enqueue(2);
+        intQueue.Enqueue(3);
+        intQueue.Enqueue(4);
+        intQueue.Enqueue(5);
+        
+        // Create a stack of integers and add 5 elements to it
+        Stack<int> intStack = new Stack<int>();
+        intStack.Push(1);
+        intStack.Push(2);
+        intStack.Push(3);
+        intStack.Push(4);
+        intStack.Push(5);
+
+        // Additional Tasks
+        PrintAllElements(intList);
+        PrintLargestAndSmallestDigits(124);
+        FindAndPrintEvenSumAndAverage(new int[] { 10, 21, 30, 43, 56, 70 });
+
+        // Operations on Data Structures (demonstrated in previous examples)
+        // This area can include your sum calculations and removals from queue/stack if needed
+    }
+
+    static void PrintAllElements(List<int> list)
+    {
+        Console.WriteLine("All elements in the list:");
+        list.ForEach(item => Console.Write(item + " "));
+        Console.WriteLine();
+    }
+
+    static void PrintLargestAndSmallestDigits(int number)
+    {
+        var digits = number.ToString().Select(digit => int.Parse(digit.ToString())).ToList();
+        Console.WriteLine($"Largest digit in {number}: {digits.Max()}");
+        Console.WriteLine($"Smallest digit in {number}: {digits.Min()}");
+    }
+
+    static void FindAndPrintEvenSumAndAverage(int[] array)
+    {
+        var evenNumbers = array.Where(x => x % 2 == 0);
+        int evenSum = evenNumbers.Sum();
+        double average = array.Average();
+
+        Console.WriteLine("Sum of even values: " + evenSum);
+        Console.WriteLine("Average of all array elements: " + average);
+    }
+}
